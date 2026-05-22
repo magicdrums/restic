@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Restic Desktop
+Comment=Copias de seguridad cifradas con restic
+GenericName=Backup
+Exec=restic-desktop
+Icon=org.restic.ResticDesktop
+Terminal=false
+Type=Application
+Categories=Utility;System;FileTools;
+Keywords=backup;restic;restore;snapshot;
+StartupNotify=true
+MimeType=

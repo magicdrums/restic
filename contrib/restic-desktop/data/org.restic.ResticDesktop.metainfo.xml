@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.restic.ResticDesktop</id>
+  <name>Restic Desktop</name>
+  <summary>Interfaz gráfica para copias de seguridad con restic</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>BSD-2-Clause</project_license>
+  <description>
+    <p>
+      Aplicación de escritorio para Fedora y GNOME que permite configurar
+      repositorios restic, crear copias de seguridad, listar instantáneas y
+      restaurar archivos sin usar la terminal.
+    </p>
+    <p>Requiere el programa restic instalado en el sistema.</p>
+  </description>
+  <launchable type="desktop-id">org.restic.ResticDesktop.desktop</launchable>
+  <url type="homepage">https://restic.net</url>
+  <provides>
+    <binary>restic-desktop</binary>
+  </provides>
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+  <supports>
+    <control_point>keyboard</control_point>
+    <control_point>pointing</control_point>
+    <control_point>touch</control_point>
+  </supports>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="1.0.0" date="2026-05-21">
+      <description>
+        <p>Primera versión estable: configuración de repositorio, copias de seguridad, instantáneas y restauración.</p>
+      </description>
+    </release>
+  </releases>
+</component>
