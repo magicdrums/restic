@@ -1,17 +1,17 @@
 # Restic Desktop
 
-Interfaz gráfica de escritorio para [restic](https://restic.net) en Fedora y entornos GNOME. Envuelve el binario `restic` (no lo reemplaza) y usa salida `--json` para las operaciones.
+Desktop GUI for [restic](https://restic.net) on Fedora and GNOME. It wraps the `restic` binary (it does not replace it) and uses `--json` output for operations.
 
-## Funciones
+## Features
 
-- Configurar repositorio (local, SFTP, S3, etc.)
-- Guardar contraseña en el llavero GNOME (libsecret)
-- Inicializar repositorio nuevo
-- Copia de seguridad de carpetas seleccionadas con barra de progreso
-- Listar y verificar instantáneas
-- Restaurar una instantánea a una carpeta de destino
+- Configure repository (local, SFTP, S3, etc.)
+- Store password in the GNOME keyring (libsecret)
+- Initialize a new repository
+- Back up selected folders with a progress bar
+- List and verify snapshots
+- Restore a snapshot to a target folder
 
-## Requisitos (Fedora)
+## Requirements (Fedora)
 
 ```bash
 sudo dnf install restic python3-gobject python3-gobject-devel \
@@ -19,22 +19,22 @@ sudo dnf install restic python3-gobject python3-gobject-devel \
 pip install --user secretstorage
 ```
 
-En Fedora 41+ suele bastar:
+On Fedora 41+, this is usually enough:
 
 ```bash
 sudo dnf install restic python3-gobject libadwaita python3-secretstorage
 ```
 
-## Ejecución sin instalar
+## Run without installing
 
-Desde este directorio:
+From this directory:
 
 ```bash
 chmod +x restic-desktop
 ./restic-desktop
 ```
 
-## Instalación
+## Installation
 
 ```bash
 meson setup build
@@ -42,35 +42,41 @@ meson compile -C build
 sudo meson install -C build
 ```
 
-Luego inicia la aplicación desde el menú de actividades (**Restic Desktop**) o con:
+Then launch the app from the activities menu (**Restic Desktop**) or run:
 
 ```bash
 restic-desktop
 ```
 
-## Uso rápido
+## Quick start
 
-1. Abre **Restic Desktop** y pulsa el icono de configuración.
-2. Indica la ruta del repositorio (por ejemplo `/home/TU_USUARIO/backups/restic`) y una contraseña segura.
-3. Si el repositorio no existe, usa **Inicializar repositorio nuevo**.
-4. En **Copia de seguridad**, añade carpetas y pulsa **Iniciar copia de seguridad**.
-5. En **Instantáneas** revisa las copias creadas.
-6. En **Restaurar**, elige una instantánea y la carpeta de destino.
+1. Open **Restic Desktop** and click the settings icon.
+2. Enter the repository location (e.g. `/home/YOUR_USER/backups/restic`) and a strong password.
+3. If the repository does not exist yet, use **Initialize repository**.
+4. Under **Backup**, add folders and click **Start backup**.
+5. Under **Snapshots**, review created backups.
+6. Under **Restore**, pick a snapshot and a destination folder.
 
-## Arquitectura
+## Configuration and secrets
+
+The app stores settings in `~/.config/restic-desktop/config.json` (repository path and backup folders only). Passwords are stored in the system keyring via libsecret, not in plain text.
+
+**Do not commit** local copies of config files, password files, repository paths, or test backup data into this repository. See `.gitignore` for ignored patterns.
+
+## Architecture
 
 ```
 ┌─────────────────────┐
-│  GTK4 / libadwaita  │  ← interfaz (Python + PyGObject)
+│  GTK4 / libadwaita  │  ← UI (Python + PyGObject)
 └──────────┬──────────┘
            │ subprocess + RESTIC_* env
 ┌──────────▼──────────┐
-│   restic (binario)  │  ← cifrado, deduplicación, backends
+│   restic (binary)   │  ← encryption, deduplication, backends
 └─────────────────────┘
 ```
 
-Restic no expone una API de biblioteca Go; la integración oficial para scripts y GUIs es ejecutar el CLI con `--json`.
+Restic does not expose a Go library API; the supported integration for scripts and GUIs is to run the CLI with `--json`.
 
-## Licencia
+## License
 
-BSD 2-Clause (igual que restic).
+BSD 2-Clause (same as restic).

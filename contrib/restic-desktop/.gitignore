@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Meson
+build/
+meson-private/
+meson-logs/
+.compile_commands.json
+
+# Local / IDE
+.idea/
+.vscode/
+*.swp
+*~
+
+# Restic Desktop config and secrets (never commit)
+config.json
+config.local.json
+*.local.json
+.env
+.env.*
+secrets/
+credentials/
+*.pem
+*.key
+*password*
+*passwd*
+RESTIC_PASSWORD*
+restic-password*
+repository.txt
+repos.txt
+
+# Local test repositories and backup data
+repo/
+repos/
+repository/
+repositories/
+backup/
+backups/
+test-repo/
+test-data/
+*.repo
+
+# Keyring / cache dumps (debugging)
+*.keyring
+*.secret
+.cache/
